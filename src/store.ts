@@ -4,7 +4,8 @@ import Fish from "./models/Fish";
 type StoreType = {
     fishes: Fish[];
     incrementHunger: (fish: Fish) => void,
-    addFish: (fish: Fish) => void
+    addFish: (fish: Fish) => void,
+    feedFish: (fish: Fish) => void
 }
 
 export const store = reactive<StoreType>({
@@ -20,5 +21,9 @@ export const store = reactive<StoreType>({
     addFish: (fish: Fish) => {
         const idx = store.fishes.push(fish)
         store.incrementHunger(store.fishes[idx-1])
+    },
+    feedFish: (fish: Fish) => {
+        const index = store.fishes.indexOf(fish); 
+        store.fishes[index].hungerLevel = 0
     }
 })

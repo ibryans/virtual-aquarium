@@ -9,14 +9,20 @@ import dead from '@/assets/images/dead.png'
   <main class="w-screen h-screen flex flex-row">
     <SideBar/>
     <section 
-      class="w-screen h-screen" 
+      class="w-screen h-screen relative" 
       :style="{ 
         backgroundImage: `url(${bg})`,
         backgroundPosition: 'center',
         backgroundSize: 'cover' 
       }">
 
-      <div class="p-5 flex flex-col gap-2 w-44" v-for="(fish,idx) in store.fishes" :key="idx">
+      <div class="p-5 flex flex-col gap-2 w-44 h-40 fish relative" v-for="(fish,idx) in store.fishes" :key="idx">
+        <button
+          @click="() => store.feedFish(fish)"
+          v-if="fish.hungerLevel > 70 && fish.hungerLevel < 100"
+          class="absolute top-0 right-0 rounded-full bg-white text-center p-2 hover:text-red-500 transition">
+            Comida!
+        </button>
         <img :src="fish.hungerLevel < 100 ? fish.image : dead"/>
         <span class="rounded bg-black opacity-70 text-white text-center p-2">
           {{ fish.name }} - 
@@ -27,3 +33,7 @@ import dead from '@/assets/images/dead.png'
     </section>
   </main>
 </template>
+
+<style lang="css" scoped>
+  /* TODO: fazer a animação de nadar */
+</style>
