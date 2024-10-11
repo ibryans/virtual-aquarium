@@ -18,7 +18,8 @@ import { store } from '@/store';
       <div class="p-5 flex flex-col gap-2 w-44" v-for="(fish,idx) in store.fishes" :key="idx">
         <img :src="fish.image"/>
         <span class="rounded bg-black opacity-70 text-white text-center p-2">
-          {{ fish.name }}
+          {{ fish.name }} - 
+          {{ fish.hungerLevel }}%
         </span>
       </div>
 

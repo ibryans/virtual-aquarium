@@ -7,10 +7,10 @@
     import type4 from '@/assets/images/tropical-fish.png'
     import type5 from '@/assets/images/tuna.png'
     import Fish from '@/models/Fish';
+    import type FishType from '@/models/FishType';
     import { store } from '@/store';
-import type FishType from '@/models/FishType';
 
-    const selected = ref<FishType>();
+    const selected = ref<FishType | null>();
     const selectedName = ref<string>('');
 
     const types: FishType[] = [
@@ -27,12 +27,14 @@ import type FishType from '@/models/FishType';
 
     function addFish() {
         if (selected.value) {
-            store.fishes.push(new Fish(
+            store.addFish(new Fish(
                 selectedName.value,
                 selected.value?.type,
                 selected.value?.image
             ))
         }
+        selected.value = null;
+        selectedName.value = '';
     }
 
 </script>
@@ -42,16 +44,16 @@ import type FishType from '@/models/FishType';
         <p class="text-xl text-white font-bold">
             Tipo:
         </p>
-        <div id="choose-fish" class="grid grid-cols-2 justify-items-start mt-5">
+        <div id="choose-fish" class="grid grid-cols-2 gap-y-2 justify-items-start mt-5">
             <button 
                 v-for="(type, idx) in types" 
                 :key="idx"
-                class="w-1/2 items-center hover:opacity-50 transition"
+                class="col-span-1 items-center hover:opacity-50 transition p-2"
                 @click="() => selectFishType(type)"
             >
                 <img
                     :src="type.image"
-                    class="rounded-full p-2"
+                    class="p-2 rounded-lg"
                     :class="{ 'ring-2 ring-blue-300': selected?.type === type.type }"
                 />
             </button>
