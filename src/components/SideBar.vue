@@ -40,11 +40,13 @@
 </script>
 
 <template>
-    <aside class="w-1/4 max-w-96 h-screen bg-blue-900 p-5 flex flex-col">
+    <aside class="w-1/5 h-screen bg-blue-900 p-5 flex flex-col">
         <p class="text-xl text-white font-bold">
             Tipo:
         </p>
-        <div id="choose-fish" class="grid grid-cols-2 gap-y-2 justify-items-start mt-5">
+
+        <!-- Tipos de peixe -->
+        <div id="choose-fish" class="grid grid-cols-2 justify-items-start mt-5">
             <button 
                 v-for="(type, idx) in types" 
                 :key="idx"
@@ -53,12 +55,14 @@
             >
                 <img
                     :src="type.image"
-                    class="p-2 rounded-lg"
+                    class="p-2 rounded-lg max-w-44"
                     :class="{ 'ring-2 ring-blue-300': selected?.type === type.type }"
                 />
             </button>
         </div>
-        <form action="" class="flex flex-col gap-3">
+
+        <!-- Nome do peixe -->
+        <form class="flex flex-col gap-3">
             <p class="text-xl text-white font-bold mt-10">
                 Nome:
             </p>
@@ -66,12 +70,12 @@
                 type="text" 
                 v-model="selectedName" 
                 class="w-100 p-2 rounded-lg"
-            >
+            />
             <button
-                :disabled="!selected"
+                :disabled="!selected || selectedName == ''"
                 @click.prevent="addFish"
-                class="w-100 bg-red-500 text-white rounded-lg p-4 hover:bg-red-700 transition">
-                Adicionar peixe
+                class="w-100 bg-red-500 text-white rounded-lg p-4 disabled:bg-red-300 hover:bg-red-700 transition">
+                    Adicionar peixe
             </button>
         </form>
     </aside>
