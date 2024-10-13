@@ -5,7 +5,8 @@
 </script>
 
 <template>
-    <section 
+    <section
+      id="aquarium"
       class="w-4/5 h-screen"
       :style="{ 
         backgroundImage: `url(${bg})`,

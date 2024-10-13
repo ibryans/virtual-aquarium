@@ -2,6 +2,7 @@
     import Fish from '@/models/Fish';
     import dead from '@/assets/images/dead.png'
     import { store } from '@/store';
+    import { onMounted, ref } from 'vue';
     
     defineProps({
         fish: {
@@ -9,15 +10,37 @@
             required: true
         }
     })
+
+    const xPosition = ref(0)
+    const yPosition = ref(0)
+
+    const move = () => {
+      xPosition.value = Math.random() * (window.innerWidth - 500)
+      yPosition.value = Math.random() * (window.innerHeight - 500)
+    }
+
+    onMounted(() => {
+      move();
+      setInterval(() => move(), 2000)
+    })
+
+
 </script>
 
 <template>
-    <div class="p-5 flex flex-col w-44 relative">
+    <div 
+      class="p-5 flex flex-col w-44 relative swim"
+      :style="{
+        left: `${xPosition}px`,
+        top: `${yPosition}px`,
+        transition: 'all 8s linear'
+      }"
+    >
         
         <!-- Me alimente -->
         <button
             @click="() => store.feedFish(fish)"
-            v-if="fish.hungerLevel > 75 && fish.hungerLevel < 100"
+            v-if="fish.hungerLevel >= 75 && fish.hungerLevel < 100"
             class="absolute top-0 right-0 rounded-full bg-white text-center p-2 hover:text-red-500 transition">
                 Comida!
         </button>
@@ -41,3 +64,8 @@
         </div>
     </div>
 </template>
+
+<style lang="css" scoped>
+
+
+</style>

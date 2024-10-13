@@ -55,7 +55,7 @@
             >
                 <img
                     :src="type.image"
-                    class="p-2 rounded-lg max-w-44"
+                    class="p-2 rounded-lg"
                     :class="{ 'ring-2 ring-blue-300': selected?.type === type.type }"
                 />
             </button>
