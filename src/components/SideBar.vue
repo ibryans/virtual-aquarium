@@ -55,7 +55,7 @@
             >
                 <img
                     :src="type.image"
-                    class="p-2 rounded-lg"
+                    class="p-2 rounded-lg w-44"
                     :class="{ 'ring-2 ring-blue-300': selected?.type === type.type }"
                 />
             </button>
@@ -66,13 +66,14 @@
             <p class="text-xl text-white font-bold mt-10">
                 Nome:
             </p>
-            <input 
+            <input
+                placeholder="Sem nome"
                 type="text" 
                 v-model="selectedName" 
                 class="w-100 p-2 rounded-lg"
             />
             <button
-                :disabled="!selected || selectedName == ''"
+                :disabled="!selected"
                 @click.prevent="addFish"
                 class="w-100 bg-red-500 text-white rounded-lg p-4 disabled:bg-red-300 hover:bg-red-700 transition">
                     Adicionar peixe
