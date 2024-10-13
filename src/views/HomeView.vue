@@ -4,7 +4,7 @@
 </script>
 
 <template>
-  <main class="flex flex-row">
+  <main class="flex flex-col md:flex-row w-screen h-screen">
     <SideBar/>
     <AquariumContainer/>
   </main>

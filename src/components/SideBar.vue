@@ -40,7 +40,7 @@
 </script>
 
 <template>
-    <aside class="w-1/5 h-screen bg-blue-900 p-5 flex flex-col">
+    <aside class="w-full md:w-1/4 h-1/3 md:h-screen bg-blue-900 p-5 flex flex-col overflow-auto">
         <p class="text-xl text-white font-bold">
             Tipo:
         </p>

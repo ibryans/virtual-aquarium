@@ -7,7 +7,7 @@
 <template>
     <section
       id="aquarium"
-      class="w-4/5 h-screen"
+      class="w-full md:w-4/5 h-2/3 md:h-screen"
       :style="{ 
         backgroundImage: `url(${bg})`,
         backgroundPosition: 'center',
